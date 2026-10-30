@@ -180,8 +180,13 @@ def mask_attention_scores_with_neg_inf(scores, mask):
     pass
     return scores.masked_fill(~mask, -torch.inf)
 
-# Step 20 - softmax_attention_weights (not yet solved)
-# TODO: implement
+# Step 20 - softmax_attention_weights
+import torch
+
+def softmax_attention_weights(masked_scores):
+    # TODO: softmax over the last axis, zeroing rows that are entirely -inf
+
+    return masked_scores.softmax(dim=-1).nan_to_num(0.0)
 
 # Step 21 - apply_attention_weights_to_values (not yet solved)
 # TODO: implement
